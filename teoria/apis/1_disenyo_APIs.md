@@ -78,7 +78,7 @@
 
 - Cada recurso debe tener una URL única que lo identifique
 
-```http
+```javascript
 //esta URL es de un API ficticio
 http://api.ua.es/asignaturas/34039
 //Esta no, es del API de Github
@@ -97,6 +97,17 @@ Una URL por sí sola no sirve para mucho salvo que digamos qué hacer con el rec
 
 ## El código de estado
 
+- En REST el código de estado devuelto por el servidor es importante, ya que indica qué ha pasado con la operación
+
+```c
+  //Convenciones similares se usan en otros lenguajes/contextos
+  int main() {
+      ...
+      return 0; //En web esto es 200 OK 
+  }
+```
+
+- https://httpstatuses.com/
 
 
 
@@ -104,6 +115,51 @@ Una URL por sí sola no sirve para mucho salvo que digamos qué hacer con el rec
 
 ## El formato de datos
 
+HTML no es muy apropiado para datos en general, ya que está diseñado para representar documentos
+
+```html
+<html>
+    <head>Tu nota de ADI</head>
+    <body>
+      <h1>Tu nota:</h1>
+      <p>Juan Ruiz:10</p>
+    </body>
+</html>
+
+```
+
+---
+
+## El formato de datos (II)
+
+Una alternativa usada inicialmente en APIs web fue XML, pero bueno 😑
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<nota>
+  <alumno>
+     Juan Ruiz
+  </alumno>
+  <valor>
+     10
+  </valor>
+</nota>
+```
+
+---
+
+## El formato de datos (III)
+
+Actualmente se tiende a usar por defecto JSON en todos los APIs
+
+```json
+{
+  "alumno": "Juan Ruiz",
+  "nota": 10 
+}
+
+```
+![](http://www.quickmeme.com/img/c4/c4083d836ddff66aadf770fddf6c865feb6c9c6db293f2ade3da3a0e5f2cf675.jpg) <!-- .element class="stretch" -->
 
 ---
 
