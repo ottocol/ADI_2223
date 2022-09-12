@@ -26,7 +26,7 @@ Javascript nació en el lado del cliente, dentro del navegador, pero en los últ
     
 - **Entornos de ejecución**: aunque JS nació en el navegador, desde hace unos años se usa también para escribir aplicaciones en el servidor (e incluso de escritorio). 
 + Cada navegador tiene su propio intérprete JS. Hace unos años había incompatibilidades importantes entre ellos, que se han ido eliminando conforme se estandarizaba el lenguaje y sus APIs asociados y se dejaba de lado la "guerra de los navegadores". Actualmente los problemas de portabilidad vienen  por el lado de si el navegador ya implementa o no determinada funcionalidad.
-+ En el servidor, el entorno de ejecución más usado (y prácticamente el único existente) es Node.
++ En el servidor, el entorno de ejecución más usado es Node.
 
 ## Sintaxis básica
 
