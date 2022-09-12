@@ -51,7 +51,7 @@ a = [1,2];  //Literal para definir un array. Sigue sin rechistar
 b = "OK";   //Podemos usar variables no declaradas. Se declaran automáticamente
 ```
 
-- Internamente se diferencia entre tipos *primitivos* (numérico, *booleano*, cadena) y objetos (por ejemplo `Date`, `RegExp`, entre las "clases" predefinidas en JS, o los objetos que podemos definir nosotros)
+- Internamente se diferencia entre tipos *primitivos* (numérico, *booleano*, cadena) y objetos, que son referencias, como en Java (por ejemplo `Date`, `RegExp`, entre las "clases" predefinidas en JS, o los objetos que podemos definir nosotros)
 
 ```javascript
 typeof 3          //"number"
