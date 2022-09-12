@@ -28,6 +28,8 @@ Javascript nació en el lado del cliente, dentro del navegador, pero en los últ
 + Cada navegador tiene su propio intérprete JS. Hace unos años había incompatibilidades importantes entre ellos, que se han ido eliminando conforme se estandarizaba el lenguaje y sus APIs asociados y se dejaba de lado la "guerra de los navegadores". Actualmente los problemas de portabilidad vienen  por el lado de si el navegador ya implementa o no determinada funcionalidad.
 + En el servidor, el entorno de ejecución más usado es Node.
 
+> Javascript tiene fama de ser un lenguaje "rarito" y "especial". En apariencia es como un C "con tipos dinámicos" pero esconde muchas sutilezas por debajo de la superficie. Podéis ver algunas en tono humorístico  en la conocida charla titulada [WAT](https://www.destroyallsoftware.com/talks/wat). Os recomiendo verla solo "por las risas" (dura menos de 5 minutos). En esta charla no explica el por qué de los extraños resultados, si tenéis realmente curiosidad podéis verla por ejemplo en [este video](https://www.youtube.com/watch?v=oK2vXWfCnt4) o [en este artículo](https://medium.com/dailyjs/the-why-behind-the-wat-an-explanation-of-javascripts-weird-type-system-83b92879a8db).
+
 ## Sintaxis básica
 
 - A grandes rasgos, la sintaxis básica es muy similar a la de C
@@ -37,7 +39,7 @@ Javascript nació en el lado del cliente, dentro del navegador, pero en los últ
 
 ### Variables y constantes
 
-- No tienen tipo predefinido, o mejor dicho, *el tipo puede cambiar dinámicamente*.
+- No tienen tipo predefinido, o mejor dich{o, *el tipo puede cambiar dinámicamente*.
 - No existen palabras clave en el lenguaje para definir tipos. Las variables se declaran simplemente con `var`
 
 ```javascript
