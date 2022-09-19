@@ -44,7 +44,7 @@ Guardar el código anterior en un archivo `hola_express.js` y crear un `package.
 Ahora podemos instalar `express` en el proyecto y actualizar además automáticamente el `package.json` con 
 
 ```bash
-npm i express # si es npm<5 tendremos que añadir "--save"
+npm i express
 ```
 
 Para ejecutar el ejemplo haríamos:
