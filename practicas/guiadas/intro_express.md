@@ -206,34 +206,28 @@ En aplicaciones REST vamos a necesitar la siguiente información de la petición
 
 Los dos primeros ya hemos visto que son accesibles a través de la propiedad `params` del objeto petición. Para acceder al **cuerpo de la petición** podemos usar la propiedad `body`. Esta propiedad nos da el contenido "en crudo" como una cadena de caracteres. 
 
-En REST es habitual que el cuerpo de una petición POST/PUT sea un objeto en formato JSON. El *middleware* denominado [body-parser](https://www.npmjs.com/package/body-parser) transforma automáticamente el `body`en un objeto Javascript a partir del JSON.
-
-Este *middleware* no viene incluido automáticamente con Express. Para instalarlo, desde línea de comandos:
-
-```bash
-#en npm<5 habrá que añadir detrás "--save"
-npm i body-parser
-```
-
-Ahora podemos usarlo del siguiente modo:
+En REST es habitual que el cuerpo de una petición POST/PUT sea un objeto en formato JSON. Podemos pedirle a Express que intente transformar el cuerpo de cada petición a JSON añadiendo al principio del código
 
 ```javascript
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-//En este caso hemos vinculado el middleware con la aplicación global
-//También lo podríamos vincular a un router o a una URL
-app.use(bodyParser.json());
+//suponiendo que "express" es el objeto que ha devuelto el "require('express')"
+app.use(express.json())
+```
 
+> En versiones de Express anteriores a la 4.16 para hacer esto se necesitaba instalar un paquete adicional llamado [body-parser](https://www.npmjs.com/package/body-parser).
+
+Una vez ejecutada la inicialización anterior, en cualquier petición que incluya un cuerpo en formato JSON podemos acceder fácilmente a los datos a través de la propiedad `body`.
+
+```javascript
 app.post('/usuarios', function(req, res) {
-  //por obra y gracia del body-parser, obtendremos automáticamente
+  //obtendremos automáticamente
   //un objeto JS a partir del JSON del cuerpo de la petición 
   var nuevoUsuario = req.body;
-  ...
+  //el objeto JS es un objeto "convencional" con sus propiedades
+  console.log(nuevoUsuario.login)
 });
 ```
 
-> El *middleware* `body-parser` puede *parsear* otros formatos además de JSON. Nótese que en el ejemplo hemos vinculado el `bodyParser.json()` porque era la funcionalidad que nos interesaba. Podríamos haber vinculado por ejemplo `bodyParser.urlencoded()` para parsear peticiones de tipo `application/x-www-form-urlencoded`. Se recomienda consultar [la documentación de `body-parser`](https://github.com/expressjs/body-parser#body-parser).
+> Express puede *parsear* otros formatos además de JSON.  Podríamos haber inicializado por ejemplo `express.urlencoded()` para parsear peticiones de tipo `application/x-www-form-urlencoded`.
 
 
 ### Generación de la respuesta
