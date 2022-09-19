@@ -183,6 +183,16 @@ Tiene su origen en [la tesis](www.ics.uci.edu/~fielding/pubs/dissertation/top.ht
 
 ---
 
+## Todo esto no son más que convenciones que podrían ser de otra forma
+
+
+> Para diseñar un buen API para los servicios necesitamos usar algo que la gente conozca. Así que, aunque no hay nada superior desde el punto de vista técnico en REST y JSON con respecto a usar RPC con un protocolo de más bajo nivel, usar algo que la gente comprenda bien [...] ayuda mucho en el diseño del API
+
+Jay Kreps *(Principal Staff Engineer @ LinkedIn)*, [Lessons from Building and Scaling LinkedIn](https://www.infoq.com/presentations/linkedin-architecture-stack/), QCon NY 2013 
+<!--  .element: class="caption" -->  
+
+---
+
 <!-- .slide: class="titulo" -->
 
 ## 3. Recursos y relaciones entre ellos
