@@ -93,7 +93,7 @@ Por ejemplo, aquí tenemos un `package.json` para nuestro `Hola Node` que incluy
   "name": "hola_node",
   "version": "1.0.0",
   "dependencies": {
-    "colors": "^1.4"
+    "colors": "^1.4.0"
   }
 }
 ```
