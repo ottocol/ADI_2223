@@ -93,12 +93,14 @@ Por ejemplo, aquí tenemos un `package.json` para nuestro `Hola Node` que incluy
   "name": "hola_node",
   "version": "1.0.0",
   "dependencies": {
-    "colors": ">=1.0"
+    "colors": "^1.4"
   }
 }
 ```
 
 Los campos `name` y `version` son obligatorios. Podemos ver todos los posibles campos del `package.json` en la [documentación de referencia de npm](https://docs.npmjs.com/files/package.json).
+
+> La versión o versiones de las dependencias que son válidas para el proyecto se especifican mediante *semver* o *semantical versioning*, que es una especie de estándar. Este estándar incluye unas normas sobre cómo numerar las versiones de los proyectos (`MAJOR.MINOR.PATCH`) y cuándo cambiar cada número de versión y además una sintaxis para especificar qué conjunto de versiones son compatibles con nuestro proyecto. Por ejemplo el `^` indica que nos vale cualquier versión igual o superior a la especificada mientras no cambie el número `MAJOR`. Podéis ver más información sobre el tema en la [documentación de semver](https://docs.npmjs.com/cli/v6/using-npm/semver) de npm y en esta [calculadora de *semver*](https://semver.npmjs.com/) en la que al meter una expresión de rango de versiones para un paquete npm, nos dará una lista de las incluídas en la misma.
 
 Gracias al `package.json` en los repositorios no es necesario adjuntar las librerías, solo el código propio. Cuando nos bajamos un proyecto Node de un tercero (por ejemplo de Github)  podemos **instalar todas sus dependencias** simplemente con
 
