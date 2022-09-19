@@ -4,18 +4,27 @@ Node.js (o simplemente Node) es una plataforma de desarrollo para implementar ap
 
 > En la asignatura vamos a usar Node como plataforma de servidor no por sus virtudes con respecto a otras plataformas sino básicamente por permitirnos *usar el mismo lenguaje de programación en el cliente y en el servidor: Javascript*.
 
-## Instalar Node en Linux/OS X
+## Instalar Node
 
-Hay varias formas de instalar Node en un sistema UNIX, una de las más sencillas es con `n`, un gestor de versiones de Node que nos permite tener varias versiones coexistiendo en nuestra máquina y no necesita permisos de superusuario para instalarlas.
 
+En la página de Node hay [instaladores](https://nodejs.org/en/download/) para OSX y Windows. Como alternativa, se puede usar un gestor de versiones de Node, que nos permite tener varias versiones coexistiendo en nuestra máquina y generalmente no necesita permisos de superusuario para instalarlas.
+
+### Linux/OS X
+
+`n` es un gestor de versiones de Node para Linux/OSX potente y fácil de usar e instalar.
 Para instalar la última versión LTS de Node con `n`, simplemente tecleamos en una terminal:
 
 ```bash
 curl -L https://git.io/n-install | bash
 ```
-La instalación se hace en el directorio `$HOME/n`, para no requerir permisos de superusuario.
+La instalación se hace en el directorio `$HOME/n`, para no requerir permisos de superusuario. A partir de aquí se recomienda leer la [documentación](https://github.com/tj/n) de `n` para saber cómo instalar versiones adicionales de Node o seleccionar la versión activa para cada proyecto.
 
-## Hola Node
+
+### Windows
+
+La propia Microsoft recomienda un gestor de versiones de Node denominada [nvm](https://nodejs.org/en/download/) (hay otro gestor de versiones de node llamado [nvm](https://github.com/nvm-sh/nvm) para Linux/OSX, aunque es otro proyecto distinto).
+
+## ¡Hola Node!
 
 Aquí tenemos el clásico "Hola mundo" en versión *app* web usando Node.js:
 
