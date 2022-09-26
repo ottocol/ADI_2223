@@ -11,10 +11,9 @@
 
 ## Contenidos de hoy
 
-4. **Colecciones: filtrados, búsquedas y paginación**
-5. Buenas prácticas en el diseño de APIs REST
-6. Buenas prácticas a nivel técnico
-7. Más allá de REST
+6. **Colecciones: filtrados, búsquedas y paginación**
+7. Buenas prácticas en el diseño de APIs REST
+8. Buenas prácticas a nivel técnico
 
 ---
 
@@ -131,7 +130,7 @@ https://graph.facebook.com/me/albums?limit=25&after=MTAxNTExOTQ1MjAwNzI5NDE=
 ---
 
 <!-- .slide: class="titulo" -->
-# 5. Buenas prácticas en el diseño de APIs REST
+# 7. Buenas prácticas en el diseño de APIs REST
 
 
 ---
@@ -176,7 +175,7 @@ El API debe **facilitar los casos de uso típicos**, no ser un reflejo del funci
 
 ---
 
-## Especificación formal de APIs REST
+## Especificar el API de manera formal
 
 Existen varios lenguajes especialmente creados para **especificar APIs REST** que en general nos permiten:
 
@@ -205,6 +204,8 @@ Existen varios lenguajes especialmente creados para **especificar APIs REST** qu
       <a href="http://static-anypoint-mulesoft-com.s3.amazonaws.com/API_examples_notebooks/raml-design3.html" class="caption">Ejemplo de API</a>
       </div>
 </div>
+
+El más difundido actualmente es OpenAPI/Swagger
 
 
 ---
@@ -245,14 +246,14 @@ Los productos que hay en la lista de la compra
             Location: /items/1
 ```
 
-Hay [muchas herramientas](https://apiblueprint.org/tools.html) que trabajan con este formato, por ejemplo [https://getsandbox.com/](https://getsandbox.com/)
+[Algunas herramientas](https://apiblueprint.org/tools.html) que trabajan con este formato
 
 ---
 
 
 <!-- .slide: class="titulo" -->
 
-# 6. Buenas prácticas a nivel técnico
+# 8. Buenas prácticas a nivel técnico
 
 ---
 
@@ -323,170 +324,6 @@ Depende del API, en algunos se hace con **parámetros HTTP**, en otros es **part
 https://api.twitter.com/1.1/search/tweets.json
 https://api.flickr.com/services?format=XML...
 ```
-
-
-
----
-
-<!-- .slide: class="titulo" -->
-
-# 7. Más allá de REST
-
-![](img_2/everywhere.jpg) <!-- .element: class="r-stretch" -->
-
-
----
-
-Aunque REST es el paradigma dominante en APIs web, hay casos en los que probablemente no sea el más apropiado:
-
-- APIs orientados a **operaciones**
-- *Streaming* de información, datos en **tiempo real**
--  Cuando necesitemos **flexibilidad** en los datos que queremos recuperar
-
----
-
-## APIs orientados a operaciones
-
-- No hay nada malo en que las primitivas básicas de un API sean las operaciones y no los recursos
-- Este tipo de APIs se denominan genéricamente RPC (Remote Procedure Call)
-- Por ejemplo el [API de Flickr](https://www.flickr.com/services/api/)  es RPC: aunque antes la documentación hablaba de REST y está agrupado por recursos como `contacts`, `favorites`, `galleries`,... las primitivas son operaciones
-
----
-
-
-- En ciertos casos queremos estar al tanto de las **actualizaciones del servidor** (p. ej. un *juego online*, un *chat* ...)
-- Con un API REST el cliente puede hacer ***polling* periódicamente, pero es ineficiente**, es mejor **que el servidor "nos avise"** de que hay nuevos datos
-
-![](https://cdn-images-1.medium.com/max/800/1*zG7Jyeq02JRAN6Wz6gs15g.png) <!-- .element: class="r-stretch" -->
-
-De [Polling vs SSE vs WebSocket— How to choose the right one](https://codeburst.io/polling-vs-sse-vs-websocket-how-to-choose-the-right-one-1859e4e13bd9)
-<!-- .element class="caption" --> 
-
----
-
-## Algunas tecnologías web para tiempo real/eventos
-
-**de Servidor a Cliente(Navegador)**
-
-- **Long polling**: el cliente hace *polling* pero la conexión se mantiene abierta hasta que el servidor envía datos. Entonces hay que hacer *polling* de nuevo
-- **Server Sent Events**: el cliente recibe de forma asíncrona mensajes y eventos del servidor
-- **Websockets**: comunicación bidireccional asíncrona basada en eventos
-- **Notificaciones push**: el navegador recibe notificaciones que muestra automáticamente (las veremos en la parte de móviles)
-
-**de Servidor a Servidor**
-
-- **Webhooks**: se avisa con una petición HTTP cuando hay nuevos datos 
-
-
----
-
-## Ejemplo de tecnología: Server Sent Events
-
-
- + **Unidireccionales**, siempre desde el servidor al cliente
- + Mensajes de **texto**
- + Funciona sobre **HTTP**
- + [Amplio soporte](https://caniuse.com/#feat=eventsource) en navegadores actuales (en Edge debe ser una versión reciente)
-
----
-
-## Ejemplo de código con SSE
-
-Ejemplo completo en [https://glitch.com/edit/#!/peridot-coin](https://glitch.com/edit/#!/peridot-coin)
-<!-- .element  class="caption"--> 
-
-```javascript
-//Servidor
-app.get('/sse', function(pet, resp) {
-  //El servidor de eventos debe usar el tipo MIME text/event-stream
-  resp.header('Content-Type', 'text/event-stream')
-  //Temporizador cada dos segundos
-  setInterval(function() {
-     //nombre del evento
-     resp.write('event: ping\n')
-     //datos del evento (texto, en nuestro caso un JSON)
-     resp.write(`data: {"timestamp":"${new Date()}"}`)
-     //Hay que acabar el mensaje con 2 retornos de carro
-     resp.write('\n\n')
-  }, 2000)
-})
-
-```
-
-```javascript
-//Cliente
-var evtSource = new EventSource("/sse");
-evtSource.addEventListener('ping', function(evento) {
-   var datos = JSON.parse(evento.data)
-   console.log(datos.timestamp)
-})
-```
-
----
-
-Facebook ofrece algunos *endpoints* SSE en su "graph API"
-
-[https://developers.facebook.com/docs/graph-api/server-sent-events](https://developers.facebook.com/docs/graph-api/server-sent-events)
-
-![](img_3/sse_facebook.png)
-
----
-
-## Flexibilidad al recuperar información
-
-Ya vimos que un problema de REST es que **la granularidad de los recursos es fija**
-
-```http
-http://miapirest.com/blogs/1/posts/1
-```
-Queremos ver el post 1 del blog 1<!-- .element class="caption" -->
-
-El diseñador del API puede haber decidido que un post ya incluye los comentarios, o bien que no, pero es una *decisión fija*. Si a veces los necesitamos y otras no, tendremos un problema.   
-
-
----
-
-## Posible solución: GraphQL
-
-- **GraphQL** es un lenguaje para hacer consultas flexibles a **APIs orientados a recursos** en los que estos están relacionados entre sí formando un **grafo**
-- Desarrollado en Facebook, la especificación es *open source* (aunque controlada por FB): [https://github.com/facebook/graphql](https://github.com/facebook/graphql)
-- Hay [multitud de implementaciones](http://graphql.org/code/) de cliente y servidor en diferentes lenguajes
-
-![](img_2/graphql_.png) <!-- .element: class="r-stretch" -->
-
----
-
-<!-- .slide: class="dim" -->
-<!-- .slide: data-background-image="img_2/minions.jpg" -->
-<!-- .slide: style="color: white; text-shadow: 1px 1px 3px black" -->
-## Demo con el API GraphQL de Github
-
-- [GraphQL Explorer](https://developer.github.com/v4/explorer/) (hace falta *estar logueado* en Github, todas las llamadas requieren autenticación)
-
-- [Documentación](https://docs.github.com/en/free-pro-team@latest/graphql)
-
-- [Otros APIs GraphQL de acceso público](https://github.com/apis-guru/graphql-apis)
-
----
-
-
-## Referencias
-
-
-**API design patterns, JJ Geewax**. Disponible en la UA a través de O`Reilly: [https://learning.oreilly.com/library/view/api-design-patterns/9781617295850/](https://learning.oreilly.com/library/view/api-design-patterns/9781617295850/) 
-
-
-![](https://learning.oreilly.com/covers/urn:orm:book:9781617295850/400w/) <!-- .element class="stretch" -->
-
-
----
-
-<!-- .slide: class="titulo" -->
-
-# ¿Alguna duda?
-
-
-
 
 
 
