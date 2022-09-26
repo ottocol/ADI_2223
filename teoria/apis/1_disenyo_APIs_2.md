@@ -1,7 +1,7 @@
 
 <!-- .slide: class="titulo" -->
 
-# Tema 2
+# Tema 1
 ## Diseño y desarrollo de APIs REST
 ### (sesión 2)
 
