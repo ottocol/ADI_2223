@@ -17,7 +17,7 @@ Se deben implementar al menos 7 llamadas distintas al API (más la de autentific
 
 ### Autentificación
 
-El API debe permitir autentificación mediante JSON web token (*se explicará en la clase de teoría del 6 de octubre*). Para ayudaros en la implementación solo podéis usar el paquete [jwt-simple](https://www.npmjs.com/package/jwt-simple) pero no librerías adicionales (ya que el objetivo es aprender cómo funciona JWT).
+El API debe permitir autentificación mediante JSON web token. Para ayudaros en la implementación solo podéis usar el paquete [jwt-simple](https://www.npmjs.com/package/jwt-simple) pero no librerías adicionales (ya que el objetivo es aprender cómo funciona JWT).
 
 En el contexto de JSON Web token "hacer login en la aplicación" es realmente "obtener el token". Mapeadlo con una petición POST a la URL que queráis, pasando en la petición HTTP el login y el password en JSON y obteniendo como resultado en *token* en el cuerpo de la respuesta. Esta es una llamada adicional a las otras 7 que debéis implementar.
 
