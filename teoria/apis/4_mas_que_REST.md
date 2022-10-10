@@ -1,6 +1,6 @@
 <!-- .slide: class="titulo" -->
 
-## Tema 3: APIs web no RESTful
+# Tema 3: APIs web no RESTful
 
 ![](img_4/everywhere.jpg) <!-- .element: class="r-stretch" -->
 
