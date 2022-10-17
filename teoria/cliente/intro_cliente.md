@@ -109,6 +109,16 @@ Forma "clásica": con el atributo `src` en un `<script>` vacío conseguimos una 
 
 ---
 
+## Acceso a los APIs nativos del navegador
+
+- El navegador incluye "de serie" multitud de APIs, para: gestión de eventos, manipulación del HTML, comunicación con el servidor, guardar datos en local, dibujar gráficos,...
+- Hay una serie de "objetos globales predefinidos" de los que "cuelgan" estos APIs, por ejemplo
+  + `window`: el objeto global por defecto, todo lo que definimos está dentro de él.
+  + `document`: la página actual
+  + `navigator`: el navegador
+
+---
+
 Por defecto al encontrar un *script* se interrumpe la carga del HTML hasta que se acabe de cargar,_parsear_ y ejecutar el *script*. Por ello típicamente __se recomendaba colocar los scripts al final__, así el usuario no ve una página en blanco. 
 
 Con *scripts* externos podemos usar los atributos `defer` o `async` 
@@ -128,14 +138,14 @@ Claramente, los `<script src="">` no son una buena solución al **problema de la
 En JS han ido surgiendo distintos sistemas de módulos, algunos estándares oficiales y otros "de facto"
 
 - **CommonJS** (usado en Node)
-- **Módulos ES6** (diseñados para los navegadores)  
+- **Módulos ES6 o ESM** (diseñados para los navegadores)  
 - AMD: permite la carga asíncrona de módulos
 - UMD: compatibiliza AMD y CommonJS
 
 
 ---
 
-## Módulos ES6
+## Módulos ESM
 
 JAVASCRIPT:
 
@@ -162,10 +172,10 @@ HTML:
 
 ---
 
-## Un problema de los módulos ES6
+## Un problema de los módulos ESM
 
-- Aunque a fecha de hoy todos los navegadores [los implementan](https://caniuse.com/#search=modules), esto es relativamente reciente. **La necesidad de usar módulos en *frontend* surgió antes de que estos estuvieran disponibles**
-- A alguien se le ocurrió que se podía añadir soporte de CommonJS al navegador con una herramienta externa que "transformara" el módulo en algo que se pueda incluir con un `script src=""` (*bundler*)
+- Aunque a fecha de hoy todos los navegadores [los implementan](https://caniuse.com/#search=modules), esto es relativamente reciente. **La necesidad de usar módulos en *frontend* surgió antes de que ESM se implementara en los navegadores más usados**
+- A alguien se le ocurrió que se podía añadir soporte de CommonJS al navegador con una herramienta externa que "transformara" el módulo en algo que se pueda incluir con un `script src=""` (esta herramienta se llamó *bundler*)
 - Como resultado, desde hace unos años **muchas dependencias de terceros se distribuyen** con `npm`, **en** formato **CommonJS** (no soportado nativamente por los navegadores)
 
 
@@ -174,7 +184,7 @@ HTML:
 ## Bundlers
 
 - Herramientas que a partir de un conjunto de módulos resuelven las dependencias y **concatenan todo el código en un único .js (*bundle*)** que el navegador puede cargar con un simple `<script src="">`
-- Típicamente ofrecen compatibilidad con módulos ES6 y CommonJS
+- Típicamente ofrecen compatibilidad con módulos ESM y CommonJS
 - Además el *bundler* puede realizar operaciones adicionales como:
   * Llamar a un transpilador para traducir el código de ES6 a ES5
   * *minificar* el código
@@ -200,12 +210,15 @@ HTML:
     + Además del *bundle* realizan otras muchas tareas
 - Hay *bundlers* modernos, como [Vite](https://vitejs.dev/), que generan *bundles* compatibles con ESM
 
+
+
+
 ---
 
-<!-- .slide: class="titulo" -->
 
-## 4.2 
-## Eventos
+Vamos a ver a continuación con más detalle los **APIs estándar** que nos permiten programar **con JS en el navegador**. Para que sea un poco más llevadero, lo haremos en forma de *demo*
+
+
 
 
 ---
@@ -222,14 +235,11 @@ API: https://owen-wilson-wow-api.onrender.com/
 
 ---
 
+<!-- .slide: class="titulo" -->
 
-## Previo: acceso a los APIs nativos del navegador
+## 4.2 
+## Eventos
 
-- El navegador incluye "de serie" multitud de APIs, para: gestión de eventos, manipulación del HTML, comunicación con el servidor, guardar datos en local, dibujar gráficos,...
-- Hay una serie de "objetos globales predefinidos" de los que "cuelgan" estos APIs, por ejemplo
-  + `window`: el objeto global por defecto, todo lo que definimos está dentro de él.
-  + `document`: la página actual
-  + `navigator`: el navegador
 
 ---
 
