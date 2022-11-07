@@ -215,6 +215,14 @@ En el ejemplo, solo puede cambiar el tercer `<p>`, así que **para repintar el c
 [Ejemplo en Svelte](https://svelte.dev/repl/a17ccc68af7d44948dee4b68256766dc?version=3.44.1)
 
 
+Notas:
+
+- En Svelte la template es todo lo que está fuera de `<script></script>`
+- Mirar la solapa "JS Output" para ver el resultado del compilador de Svelte
+- La función `c()` es la que  crea el HTML de la template, `m()` la monta en el DOM
+- `p(ctx,dirty)` actualiza solo las partes que pueden cambiar (simplificando, `ctx` son las variables y `dirty` las que han cambiado)
+
+
 ---
 
 ## Opción 2: JS para definir *templates*
@@ -301,7 +309,25 @@ Aunque en el código de la función de *render* se repinta el componente entero,
 
 ## Vue y el Virtual DOM
 
-- Curiosamente, aunque Vue usa plantillas para describir el HTML de los componentes, estas internamente se comportan como funciones JS, de hecho podemos escribir la función `render()` si las plantillas "se nos quedan pequeñas"
+- Aunque Vue usa plantillas para describir el HTML de los componentes, estas internamente se comportan como funciones JS, de hecho podemos escribir la función `render()` si las plantillas "se nos quedan pequeñas"
+
+```javascript
+//Esta función crea nodos en el DOM virtual
+import { h } from 'vue'
+
+export default {
+  data() {
+    return {
+      msg: 'hello'
+    }
+  },
+  render() {
+    return h('div', this.msg)
+  }
+}
+```
+
+
 - Por tanto, **Vue también usa un DOM virtual**
 
 
