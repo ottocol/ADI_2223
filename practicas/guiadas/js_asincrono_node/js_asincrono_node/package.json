@@ -1,0 +1,14 @@
+{
+  "name": "prueba-asincrono",
+  "version": "0.0.1",
+  "description": "Ejemplo base para probar código asíncrono",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.95.11",
+    "sqlite3": "^5.0.2"
+  }
+}
