@@ -46,9 +46,8 @@ Aunque en un API REST "puro" no existe formalmente la idea de "hacer login/hacer
 
 Además de los 6 puntos de los requisitos mínimos, elegir de entre los siguientes:
 
-- hasta *0.5 puntos* si usáis la estructura de proyecto que genera la herramienta `vue-CLI` y *single file components* (podéis mirar su uso más detallado en la documentación):
-    + [Instalación](https://cli.vuejs.org/guide/installation.html) de `vue-cli`
-    + [Crear un proyecto](https://cli.vuejs.org/guide/creating-a-project.html)
+- hasta *0.5 puntos* si usáis la estructura de proyecto que genera la herramienta `create-vue` y *single file components* (podéis mirar su uso más detallado en la documentación):
+    + [Instalación](https://github.com/vuejs/create-vue) de `create-vue`
     + [*Single file components*](https://v3.vuejs.org/guide/single-file-component.html)
 - hasta *0.5 puntos* búsqueda y paginación de datos, evidentemente para esto tendría que estar implementado también en el servidor. Si no lo hicisteis en su día y queréis hacerlo ahora, podéis añadirlo (aunque no os puedo dar puntos extra por la parte del servidor).
 - hasta *1 punto*: implementar el listado de otro recurso incluyendo también "ver detalles", "eliminar" y "editar".
@@ -57,7 +56,7 @@ Además de los 6 puntos de los requisitos mínimos, elegir de entre los siguient
 - hasta *1 punto*: usar una librería para gestionar el estado de vuestra aplicación de manera centralizada. En Vue se usaría [Pinia](https://pinia.vuejs.org/) o [Vuex](https://vuex.vuejs.org), en otros *frameworks* hay equivalentes. Si implementáis esta opción, en el *store* debería estar como mínimo:
     + La información sobre el usuario autentificado y los métodos de negocio de login/logout/registrar usuario (si tenéis este último)
     + Los datos de los listados que mostréis en la web
-    + Los métodos de comunicación con el servidor (lo que en los ejemplos de clase siempre metemos en la clase `ClienteAPI`)
+    + Los métodos de comunicación con el servidor (lo que en los ejemplos de la lista de la compra siempre metemos en la clase `ClienteAPI`)
 - hasta *1 punto*: usar un *router* para gestionar la navegación por la *app*. En el caso de Vue se usaría [Vue Router](https://router.vuejs.org)
 
 Cualquier otra funcionalidad que queráis añadir consultadla antes conmigo para ver cuánto se podría valorar en el baremo.
