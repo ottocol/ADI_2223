@@ -7,9 +7,8 @@ El objetivo de esta práctica es desarrollar una web que sirva de cliente al API
  - Usad una estructura de proyecto similar a la práctica anterior, con una carpeta `client` y una `server`
  - Necesitaréis modificar el servidor **para que use CORS**, como se hizo en el servidor de la lista de la compra (apartado "CORS" de [este documento](https://ottocol.github.io/ADI_2223/practicas/guiadas/js_estandar_proyecto.html))
  - En el proyecto cliente tenéis 2 opciones:
-   
-     a). No usar ninguna herramienta adicional en el cliente, como hicimos la semana pasada en la introducción a Vue.
-     b). Usar [`create-vue`](https://github.com/vuejs/create-vue) y *single file components* (tendríais 0.5 puntos adicionales por hacerlo así). En otros frameworks hay herramientas equivalentes (por ejemplo en React está `create-react-app`)
+    a). No usar ninguna herramienta adicional en el cliente, como hicimos la semana pasada en la introducción a Vue.
+    b). Usar [`create-vue`](https://github.com/vuejs/create-vue) y *single file components* (tendríais 0.5 puntos adicionales por hacerlo así). En otros frameworks hay herramientas equivalentes (por ejemplo en React está `create-react-app`)
      
      > También podríais usar Parcel u otro *bundler*, pero `create-vue` es más recomendable por ser la herramienta oficial de desarrollo.
 
