@@ -4,13 +4,19 @@
 ## parte III: Gestión del estado
 
 
+
+---
+<!-- .slide: class="titulo" -->
+
+# 1. Introducción. El estado de una *app*
+
 ---
 
-## ¿Qué es el estado en *frontend*?
+## ¿Qué es el estado de una *app* en *frontend*?
 
-- datos que muestra la *app* y que vienen del servidor
-- datos que ha introducido el usuario y que habrá que sincronizar con el servidor
-- información global de la app como el usuario autentificado, las preferencias, ...
+- Datos que muestra la *app* y que vienen del servidor
+- Datos que ha introducido el usuario y que habrá que sincronizar con el servidor
+- Información global de la app como el usuario autentificado, las preferencias, ...
 
 ---
 
@@ -29,7 +35,7 @@ De la documentación de Redux: ["Motivación"](http://es.redux.js.org/docs/intro
 
 <!-- .slide: class="titulo" -->
 
-## 1. Estado local
+## 2. Estado local/distribuido
 
 ---
 
@@ -43,19 +49,28 @@ Recordemos que las aplicaciones Vue, React, Angular... están formadas de **comp
 - Una idea *natural* es que **cada componente almacene localmente su estado**
 
 ```javascript
-app.component('item',{
-      props:["nombre","id", "comprado"],
-      data: ()=>{comprado:this.comprado}
-      template: `
-        <li :class="comprado ? 'tachado' : '' "
-            @click="{comprado=!comprado}">
-          {{nombre}}
-        </li>  
-      `
+aapp.component('item',{
+    props:["nombre","comprado","id"],
+    data()  {
+      return {estado:this.comprado}
+    },
+    methods: {
+      cambiarEstado() {
+          this.estado = !this.estado
+      }
+    },
+    template: `
+      <li :class="estado ? 'tachado' : '' "
+          @click="cambiarEstado">
+        {{nombre}}
+      </li>  
+    `
 })
 ```
 
-- Para algunas funcionalidades necesitaremos **pasar estado entre componentes**: ejemplo, mostrar items ordenados por diferentes criterios (nombre, comprado o no,...)
+- Para algunas funcionalidades necesitaremos **pasar estado entre componentes**: ejemplo:
+  +  mostrar items ordenados por diferentes criterios (nombre, comprado o no,...)
+  +  Mostrar una cuenta de las cosas que quedan por comprar
 
 ---
 
@@ -66,14 +81,14 @@ Queremos reducir/organizar al máximo el paso de datos entre componentes, para e
 
 1. Reducir el número de componentes con estado
 2. Mantener un flujo unidireccional de la información
-
+3. Estandarizar comunicación entre componentes no relacionados
 
 
 ---
 
-## Reducir el número de componentes con estado
+## 1. Reducir el número de componentes con estado
 
->  Almacenar el **estado** solo en el componente de **nivel superior**
+>  Práctica recomendada: almacenar el **estado** solo en el componente de **nivel superior**
 
 Beneficio: si un componente no tiene estado podemos considerar la vista como una **función pura de sus `props`**.
 
@@ -81,7 +96,7 @@ Simplifica el *testing* y el razonamiento sobre el componente
 
 ---
 
-## Mantener un **flujo unidireccional** de información
+## 2. Mantener un **flujo unidireccional** de información
 
 - Si cambia el estado: comunicación de "padres" a "hijos" con las *props*
 - Si hay que cambiarlo : de "hijos" a "padres" mediante eventos
@@ -92,17 +107,40 @@ Más fácil seguir la pista de los cambios si hay algún *bug*
 
 ---
 
-Aún así, puede que tengamos casos en que necesitemos comunicar componentes no relacionados entre sí.
+## Provide/Inject en Vue
 
-Para evitar acoplamiento entre componentes podemos usar un **event bus** (en otros contextos se llama pub/sub, cola de mensajes, ...)
+- Permite [compartir datos de un componente a sus descendientes](https://vuejs.org/guide/components/provide-inject.html)
+
+![](https://vuejs.org/assets/provide-inject.3e0505e4.png) <!-- .element class="stretch" -->
+
+<!-- .element class="column half" -->
+```javascript
+app.component(`Root`,{
+  ...
+  provide: {mensaje:"Hey!"},
+  ...
+})
+```
+
+<!-- .element class="column half" -->
+```javascript
+app.component(`DeepChild`,{
+  ...
+  inject: ["mensaje"],
+  ...
+})
+
+```
+- En otros *frameworks* existen funcionalidades similares, por ejemplo **Context** en React
+
 
 ---
 
-## Event Bus
+## 3. Organizar la comunicación entre componentes no relacionados
+
+Posibilidad: **event bus**
 
 - Es simplemente un objeto global que permite **publicar eventos y suscribirse a ellos**. Los eventos serán los mensajes entre componentes.
-
-
 - En Javascript este patrón suele llamarse *event bus* o *event emitter*. Hay multitud de librerías que implementan esta idea
 
 ---
@@ -150,32 +188,6 @@ De ese modo **todos los componentes** se convertirían en funcionales
 
 ---
 
-```javascript
-const { createApp, reactive } = Vue
-
-const sourceOfTruth = reactive({
-  message: 'Hello'
-})
-
-const appA = createApp({
-  data() {
-    return sourceOfTruth
-  }
-}).mount('#app-a')
-
-const appB = createApp({
-  data() {
-    return sourceOfTruth
-  }
-}).mount('#app-b')
-```
-
-[Ejemplo completo](https://jsbin.com/jadujut/1/edit?html,js,output)
-
-Problema: `sourceOfTruth` está actuando como una **variable global** que podemos modificar desde cualquier componente Vue
-
----
-
 ## El "patrón" *store*
 
 <div class="wrapper texto_figura">
@@ -216,7 +228,7 @@ var store = {
 
 **Pinia/Vuex 5** es el *framework* "oficial" de Vue para la gestión centralizada del estado. Es una implementación del "patrón *store*" (algo más sofisticada que lo que vimos antes)
 
-Aunque es propio de Vue se basa en los mismos principios básicos que se aplican habitualmente en el resto de *frameworks* Javascript: React, Angular, ...
+Aunque es particular de Vue se basa en los mismos principios básicos que se aplican habitualmente en el resto de *frameworks* Javascript: React (Redux), Angular (NgRedux), Svelte (Stores), ...
 
 
 ---
@@ -331,7 +343,6 @@ People blame Redux, React, functional programming, immutability, and many other 
 ## Time travel debugging
 
 
-Como los cambios en el estado siempre se hacen con acciones, si hacemos un *log* de todas ellas, avanzando y retrocediendo por él podemos **reproducir el estado de la aplicación en cualquier momento**
+Si hacemos un *log* de los cambios de estado, avanzando y retrocediendo por él podemos **reproducir el estado de la aplicación en cualquier momento**
 
 ![](images_estado/colada.c7bbc976.gif)<!-- .element: class="stretch" -->
-
