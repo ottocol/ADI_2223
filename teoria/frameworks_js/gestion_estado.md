@@ -238,7 +238,7 @@ Aunque es particular de Vue se basa en los mismos principios básicos que se apl
 - **[La arquitectura Elm](https://guide.elm-lang.org/architecture/)** (2012): Elm es un lenguaje específico para clientes web que transpila a JS
 - **[Flux](https://facebook.github.io/flux/)** (2014): arquitectura propuesta por Facebook  para estructurar aplicaciones con su framework React
 - **[Redux](https://es.redux.js.org/)** (2015): la variante de Flux de mayor éxito, normalmente usada en React pero portada luego a frameworks como Angular o Vue
-- Versiones anteriores de [Vuex](https://vuex.vuejs.org/)
+- Versiones anteriores de **[Vuex](https://vuex.vuejs.org/)**
 
 ---
 
@@ -329,7 +329,7 @@ export default {
 
 ---
 
-Para **aplicaciones pequeñas, Vuex/Redux/NgRedux... no son necesarios**
+Para **aplicaciones pequeñas, Pinia/Redux/NgRedux... no son necesarios**
 
 > **People often choose Redux before they need it**. “What if our app doesn’t scale without it?” **Later, developers frown at the indirection Redux introduced to their code**. “Why do I have to touch three files to get a simple feature working?” Why indeed!
 People blame Redux, React, functional programming, immutability, and many other things for their woes, and I understand them. It is natural to compare Redux to an approach that doesn’t require “boilerplate” code to update the state, and to conclude that Redux is just complicated
