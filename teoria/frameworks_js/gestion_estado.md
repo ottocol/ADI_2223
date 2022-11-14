@@ -306,7 +306,10 @@ export default {
 
 ---
 
-[Ejemplo completo en CodeSandbox](https://codesandbox.io/s/contador-pinia-8gplz8)
+## Código de ejemplo
+
+- [Ejemplo completo del contador en CodeSandbox](https://codesandbox.io/s/contador-pinia-8gplz8)
+- [Lista de la compra en Github](https://github.com/ottocol/lista-compra-vue-pinia)
 
 
 ---
