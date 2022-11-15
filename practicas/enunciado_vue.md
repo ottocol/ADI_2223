@@ -52,7 +52,7 @@ Además de los 6 puntos de los requisitos mínimos, elegir de entre los siguient
 - hasta *0.5 puntos* búsqueda y paginación de datos, evidentemente para esto tendría que estar implementado también en el servidor. Si no lo hicisteis en su día y queréis hacerlo ahora, podéis añadirlo (aunque no os puedo dar puntos extra por la parte del servidor).
 - hasta *1 punto*: implementar el listado de otro recurso incluyendo también "ver detalles", "eliminar" y "editar".
 - Hasta *0.5 puntos* introducir transiciones/animaciones cuando aparezcan/desaparezcan elementos de la página. Añadir además el típico efecto de que el botón/formulario "tiembla" cuando introducimos un login/password incorrectos. Vue incorpora ya integrada la [funcionalidad](https://v3.vuejs.org/guide/transitions-overview.html#class-based-animations-transitions) para hacer estas transiciones
-- hasta *1 punto* si usáis algún *framework* de componentes visuales. Para Vue tenéis por ejemplo [vuetify](https://vuetifyjs.com/en/) o [bootstrap-vue](https://bootstrap-vue.js.org)
+- hasta *1 punto* si usáis algún *framework* de componentes visuales. Para Vue tenéis por ejemplo [vuetify](https://vuetifyjs.com/en/) o [bootstrap-vue](https://bootstrap-vue.org/)
 - hasta *1 punto*: usar una librería para gestionar el estado de vuestra aplicación de manera centralizada. En Vue se usaría [Pinia](https://pinia.vuejs.org/) o [Vuex](https://vuex.vuejs.org), en otros *frameworks* hay equivalentes. Si implementáis esta opción, en el *store* debería estar como mínimo:
     + La información sobre el usuario autentificado y los métodos de negocio de login/logout/registrar usuario (si tenéis este último)
     + Los datos de los listados que mostréis en la web
